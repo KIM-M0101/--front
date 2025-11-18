@@ -1,11 +1,8 @@
+// App.js
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import AppNavigator from "./app/navigation/AppNavigator";
+
+import W_HomeScreen from "./app/screens/W_HomeScreen";
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
-  );
+  return <W_HomeScreen />;
 }
