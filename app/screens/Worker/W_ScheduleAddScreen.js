@@ -8,13 +8,13 @@ import {
 } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 
-export default function W_ScheduleAddScreen() {
+export default function W_ScheduleAddScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
         </TouchableOpacity>
 

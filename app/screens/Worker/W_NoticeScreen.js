@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { ArrowLeft } from 'lucide-react-native';
 
-export default function W_NoticeScreen() {
+export default function W_NoticeScreen({ navigation }) {
   const notices = [
     { id: 1, title: '지점 휴일 안내', content: '내일은 지점이 휴무입니다.', date: '2025.10.04' },
     { id: 2, title: '메뉴 교육', content: '이번 주 금요일에 신메뉴 교육이 있습니다.', date: '2025.10.13' },
@@ -13,7 +13,7 @@ export default function W_NoticeScreen() {
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
         </TouchableOpacity>
 

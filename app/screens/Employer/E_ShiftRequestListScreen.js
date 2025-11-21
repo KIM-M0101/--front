@@ -7,13 +7,13 @@ import {
 } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 
-export default function E_ShiftRequestListScreen() {
+export default function E_ShiftRequestListScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
         </TouchableOpacity>
 

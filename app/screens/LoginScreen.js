@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
@@ -34,7 +34,8 @@ export default function LoginScreen() {
       </View>
 
       {/* 로그인 버튼 */}
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity style={styles.loginButton}
+      onPress={() => navigation.navigate("WorkplaceSelectScreen")}> //테스트용
         <Text style={styles.loginText}>로그인</Text>
       </TouchableOpacity>
 

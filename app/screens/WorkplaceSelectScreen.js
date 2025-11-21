@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function WorkplaceSelectScreen({ navigation }) {
   return (
@@ -14,7 +14,7 @@ export default function WorkplaceSelectScreen({ navigation }) {
       {/* Add Button Card */}
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate("WorkplaceRegister")}
+        onPress={() => navigation.navigate("WorkplaceRegisterScreen")}
       >
         <Ionicons name="add" size={56} color="#555" />
       </TouchableOpacity>

@@ -7,13 +7,13 @@ import {
 } from "react-native";
 import { ArrowLeft, ChevronRight } from "lucide-react-native";
 
-export default function W_ScheduleManageScreen() {
+export default function W_ScheduleManageScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
         </TouchableOpacity>
 
@@ -22,12 +22,14 @@ export default function W_ScheduleManageScreen() {
 
       {/* 메뉴 박스 1 */}
       <TouchableOpacity style={styles.card}>
-        <Text style={styles.cardTextLarge}>근무표 조회</Text>
+        <Text style={styles.cardTextLarge}
+        onPress={() => navigation.navigate("ScheduleScreen")}>근무표 조회</Text>
         <ChevronRight size={32} color="#999" />
       </TouchableOpacity>
 
       {/* 메뉴 박스 2 */}
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity style={styles.card}
+      onPress={() => navigation.navigate("W_ShiftListScreen")}>
         <Text style={styles.cardText}>근무 교환 요청 조회</Text>
         <ChevronRight size={32} color="#999" />
       </TouchableOpacity>

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
 import { ChevronRight, Bell, UserCircle } from "lucide-react-native";
 
-export default function E_HomeScreen() {
+export default function E_HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
@@ -25,19 +25,22 @@ export default function E_HomeScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
 
         {/* 공지사항 */}
-        <TouchableOpacity style={styles.menuCard}>
+        <TouchableOpacity style={styles.menuCard}
+        onPress={() => navigation.navigate("E_NoticeScreen")}>
           <Text style={styles.menuText}>공지사항</Text>
           <ChevronRight size={32} color="#999" />
         </TouchableOpacity>
 
         {/* 근무 관리 */}
-        <TouchableOpacity style={styles.menuCard}>
+        <TouchableOpacity style={styles.menuCard}
+        onPress={() => navigation.navigate("E_ScheduleManageScreen")}>
           <Text style={styles.menuText}>근무 관리</Text>
           <ChevronRight size={32} color="#999" />
         </TouchableOpacity>
 
         {/* 급여 관리 */}
-        <TouchableOpacity style={styles.menuCard}>
+        <TouchableOpacity style={styles.menuCard}
+        onPress={() => navigation.navigate("E_PayScreen")}>
           <Text style={styles.menuText}>급여 관리</Text>
           <ChevronRight size={32} color="#999" />
         </TouchableOpacity>

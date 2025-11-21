@@ -9,7 +9,11 @@ import {
 } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 
-export default function WorkplaceAddScreen() {
+export default function WorkplaceAddScreen({ navigation , setRole }) {
+  const handleCreate = () => {
+    // 근무지 생성 로직 (DB 저장 등)
+    setRole("employer");    // 역할 확정
+  };
   const [storeName, setStoreName] = useState("");
   const [address, setAddress] = useState("");
   const [category, setCategory] = useState("");
@@ -20,7 +24,7 @@ export default function WorkplaceAddScreen() {
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
         </TouchableOpacity>
 
@@ -81,7 +85,8 @@ export default function WorkplaceAddScreen() {
       </ScrollView>
 
       {/* 등록 버튼 */}
-      <TouchableOpacity style={styles.submitButton}>
+      <TouchableOpacity style={styles.submitButton}
+      onPress={() => navigation.navigate("WorkplaceSelectScreen")}>
         <Text style={styles.submitText}>등록</Text>
       </TouchableOpacity>
 

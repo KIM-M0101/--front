@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Ionicons } from "@expo/vector-icons";
 
-export default function WorkplaceJoinScreen({ navigation }) {
+export default function WorkplaceJoinScreen({ navigation , setRole }) {
+  
   const [code, setCode] = useState('');
 
   const handleJoin = () => {
+    setRole("worker");
     if (!code.trim()) {
       alert('코드를 입력해주세요.');
       return;

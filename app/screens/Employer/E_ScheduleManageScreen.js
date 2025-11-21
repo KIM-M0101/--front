@@ -8,35 +8,38 @@ import {
 } from "react-native";
 import { ArrowLeft, ChevronRight } from "lucide-react-native";
 
-export default function WorkManageScreen() {
+export default function WorkManageScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
-        </TouchableOpacity>
 
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>근무 관리</Text>
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
 
         {/* 근무표 조회 */}
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={styles.card}
+        onPress={() => navigation.navigate("ScheduleScreen")}>
           <Text style={styles.cardTitle}>근무표 조회</Text>
           <ChevronRight size={28} color="#555" />
         </TouchableOpacity>
 
         {/* 근무표 자동 생성 */}
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={styles.card}
+        onPress={() => navigation.navigate("E_ScheduleAutoAddScreen")}>
           <Text style={styles.cardTitle}>근무표 자동 생성</Text>
           <ChevronRight size={28} color="#555" />
         </TouchableOpacity>
 
         {/* 근무 교환 요청 조회 */}
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={styles.card}
+        onPress={() => navigation.navigate("E_ShiftRequestListScreen")}>
           <Text style={styles.cardTitleSmall}>근무 교환 요청 조회</Text>
           <ChevronRight size={28} color="#555" />
         </TouchableOpacity>

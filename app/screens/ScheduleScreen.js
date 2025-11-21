@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 
-export default function ScheduleScreen() {
+export default function ScheduleScreen({ navigation }) {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const dates = [
     ["28", "29", "30", "31", "01", "02", "03"],
@@ -12,7 +12,6 @@ export default function ScheduleScreen() {
     ["25", "26", "27", "28", "29", "30", "01"],
   ];
 
-  // 근무가 있는 날짜
   const workTime = {
     "04": "12:00–14:00",
     "11": "12:00–14:00",
@@ -21,29 +20,32 @@ export default function ScheduleScreen() {
   };
 
   return (
-    <View className="flex-1 bg-zinc-100 px-5 pt-16">
+    <View style={styles.container}>
 
       {/* Header */}
-      <View className="flex-row items-center mb-6">
-        <TouchableOpacity>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
         </TouchableOpacity>
-        <Text className="text-2xl font-bold ml-4 text-black">근무표</Text>
+
+        <Text style={styles.headerTitle}>근무표</Text>
       </View>
 
       {/* Month */}
-      <View className="flex-row justify-center mb-4">
-        <Text className="text-xl font-bold text-black">10월</Text>
+      <View style={styles.monthWrapper}>
+        <Text style={styles.monthText}>10월</Text>
       </View>
 
-      {/* Day Names */}
-      <View className="flex-row justify-between mb-2">
+      {/* Day names */}
+      <View style={styles.daysRow}>
         {days.map((d, idx) => (
           <Text
             key={idx}
-            className={`w-10 text-center font-bold ${
-              idx === 0 ? "text-red-500" : idx === 6 ? "text-blue-600" : "text-black"
-            }`}
+            style={[
+              styles.dayText,
+              idx === 0 && styles.sunday,
+              idx === 6 && styles.saturday,
+            ]}
           >
             {d}
           </Text>
@@ -53,38 +55,117 @@ export default function ScheduleScreen() {
       {/* Calendar */}
       <View>
         {dates.map((week, wIdx) => (
-          <View key={wIdx} className="flex-row justify-between mb-4">
-
+          <View key={wIdx} style={styles.weekRow}>
             {week.map((d, idx) => {
               const isWork = workTime[d];
 
               return (
-                <View key={idx} className="items-center w-10">
-                  
-                  {/* 날짜 */}
+                <View key={idx} style={styles.dayBox}>
                   <Text
-                    className={`text-lg font-bold ${
-                      idx === 0 ? "text-red-500" : idx === 6 ? "text-blue-600" : "text-black"
-                    }`}
+                    style={[
+                      styles.dateText,
+                      idx === 0 && styles.sunday,
+                      idx === 6 && styles.saturday,
+                    ]}
                   >
                     {d}
                   </Text>
 
-                  {/* 근무시간 표시 */}
                   {isWork && (
-                    <View className="bg-red-200 rounded-md mt-1 px-1 py-0.5">
-                      <Text className="text-[7px] text-black text-center">
-                        {isWork}
-                      </Text>
+                    <View style={styles.workBadge}>
+                      <Text style={styles.workText}>{isWork}</Text>
                     </View>
                   )}
                 </View>
               );
             })}
-
           </View>
         ))}
       </View>
+
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f4f4f5", // zinc-100
+    paddingHorizontal: 20,
+    paddingTop: 64,
+  },
+
+  /* ------ Header ------ */
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 24,
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#000",
+    marginLeft: 16,
+  },
+
+  /* ------ Month ------ */
+  monthWrapper: {
+    justifyContent: "center",
+    flexDirection: "row",
+    marginBottom: 16,
+  },
+  monthText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#000",
+  },
+
+  /* ------ Day names ------ */
+  daysRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
+  dayText: {
+    width: 40,
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#000",
+  },
+  sunday: {
+    color: "#ef4444",
+  },
+  saturday: {
+    color: "#2563eb",
+  },
+
+  /* ------ Calendar ------ */
+  weekRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 16,
+  },
+  dayBox: {
+    alignItems: "center",
+    width: 40,
+  },
+  dateText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#000",
+  },
+
+  /* ------ Work badge ------ */
+  workBadge: {
+    backgroundColor: "#fecaca",
+    borderRadius: 4,
+    marginTop: 4,
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+  },
+  workText: {
+    fontSize: 8,
+    color: "#000",
+    textAlign: "center",
+  },
+});

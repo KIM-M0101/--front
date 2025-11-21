@@ -2,17 +2,18 @@ import React from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
 import { ArrowLeft, ArrowRight } from "lucide-react-native";
 
-export default function W_PayScreen() {
+export default function W_PayScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
       {/* Back + Title */}
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <ArrowLeft size={32} color="#000" />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>급여 관리</Text>
+        <Text style={styles.headerTitle}
+        onPress={() => navigation.navigate("W_PayScreen")}>급여 관리</Text>
       </View>
 
       {/* Month Selector */}

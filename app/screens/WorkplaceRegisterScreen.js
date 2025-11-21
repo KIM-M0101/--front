@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function WorkplaceRegisterScreen({ navigation }) {
   return (
@@ -22,7 +22,8 @@ export default function WorkplaceRegisterScreen({ navigation }) {
       <View style={styles.cardContainer}>
 
         {/* 근무지 생성 */}
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity style={styles.card}
+        onPress={() => navigation.navigate("WorkplaceAddScreen")}>
           <Ionicons name="home-outline" size={42} color="#3B82F6" />
           <Text style={styles.cardText}>근무지 생성</Text>
         </TouchableOpacity>
@@ -30,7 +31,7 @@ export default function WorkplaceRegisterScreen({ navigation }) {
         {/* 근무지 가입 */}
         <TouchableOpacity
           style={styles.card}
-          onPress={() => navigation.navigate("WorkplaceJoin")}
+          onPress={() => navigation.navigate("WorkplaceJoinScreen")}
         >
           <Ionicons name="mail-outline" size={42} color="#3B82F6" />
           <Text style={styles.cardText}>근무지 가입</Text>

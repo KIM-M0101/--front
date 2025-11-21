@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { ArrowLeft, Bell } from "lucide-react-native";
 
-export default function E_NoticeScreen() {
+export default function E_NoticeScreen({ navigation }) {
   return (
     <View style={styles.container}>
 

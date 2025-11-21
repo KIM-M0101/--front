@@ -1,22 +1,24 @@
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import HomeScreen from "./screens/HomeScreen.js";
-import ScheduleScreen from "./screens/ScheduleScreen.js";
-import ShiftSwapScreen from "./screens/ShiftSwapScreen.js";
-import SalaryScreen from "./screens/SalaryScreen.js";
-import NoticeScreen from "./screens/NoticeScreen.js";
-
-const Stack = createNativeStackNavigator();
+import React, { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import EmployerNavigator from "./EmployerNavigator";
+import EmployeeNavigator from "./EmployeeNavigator";
+import LoginScreen from "../screens/Common/LoginScreen";
 
 export default function AppNavigator() {
+  const [role, setRole] = useState(null);
+
+  // 로그인 성공 후 role 저장하는 로직 필요
+  const handleLogin = (userRole) => setRole(userRole);
+
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Schedule" component={ScheduleScreen} />
-      <Stack.Screen name="ShiftSwap" component={ShiftSwapScreen} />
-      <Stack.Screen name="Salary" component={SalaryScreen} />
-      <Stack.Screen name="Notice" component={NoticeScreen} />
-    </Stack.Navigator>
+    <NavigationContainer>
+      {role === null ? (
+        <LoginScreen onLogin={handleLogin} />
+      ) : role === "employer" ? (
+        <EmployerNavigator />
+      ) : (
+        <EmployeeNavigator />
+      )}
+    </NavigationContainer>
   );
 }

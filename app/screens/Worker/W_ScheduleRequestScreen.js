@@ -7,14 +7,14 @@ import {
 } from "react-native";
 import { ArrowLeft, ChevronRight } from "lucide-react-native";
 
-export default function W_ScheduleRequestScreen() {
+export default function W_ScheduleRequestScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <ArrowLeft size={32} color="#000" />
           </TouchableOpacity>
 
